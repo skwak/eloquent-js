@@ -74,9 +74,20 @@ function reverseArrayInPlace(array) {
 function noCheatingReverseArrayInPlace(array) {
   for (var index = 0; index < Math.floor(array.length/2); index++) {
     var num = array[index];
-    var endNum = array[(array.length - 1) - index]
     array[index] = array[(array.length - 1) - index];
     array[(array.length - 1) - index] = num;
   }
   return array;
+}
+
+function arrayToList(array) {
+  var list = null;
+  for (var index = (array.length - 1); index >= 0; index--) {
+    list = {value: array[index], rest: list};
+  }
+    return list;
+}
+
+function listToArray(list) {
+
 }
