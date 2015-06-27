@@ -85,9 +85,18 @@ function arrayToList(array) {
   for (var index = (array.length - 1); index >= 0; index--) {
     list = {value: array[index], rest: list};
   }
-    return list;
+  return list;
 }
 
 function listToArray(list) {
-
+  var arrayOfValues = [];
+  while (list["rest"]) {
+    arrayOfValues.push(list["value"]);
+    list = list["rest"];
+    listToArray(list);
+  }
+  if (!list["rest"]) {
+    arrayOfValues.push(list["value"]);
+  }
+  return arrayOfValues;
 }
