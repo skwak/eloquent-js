@@ -124,3 +124,31 @@ function nth(list, num) {
     }
   }
 }
+
+function deepEqual (obj1, obj2) {
+  if (obj1 === obj2) {
+    return true;
+  }
+
+  if (obj1 == null || obj2 == null) {
+    return false;
+  }
+
+  if (typeof obj1 === "object" && typeof obj2 === "object") {
+    var firstKeys = Object.keys(obj1);
+    var secondKeys = Object.keys(obj2);
+
+    if (firstKeys.length !== secondKeys.length) {
+      return false;
+    } else {
+      for (var keys in obj1) {
+        if (deepEqual(obj1[keys], obj2[keys]) === false) {
+          return false
+        }
+      }
+    }
+    return true;
+  }
+
+  return false;
+}
