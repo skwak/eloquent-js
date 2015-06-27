@@ -82,9 +82,15 @@ function noCheatingReverseArrayInPlace(array) {
 
 function arrayToList(array) {
   var list = null;
-  for (var index = (array.length - 1); index >= 0; index--) {
-    list = {value: array[index], rest: list};
+
+  var prepend = function(val, res) {
+    return {value: val, rest: res}
   }
+
+  for (var index = (array.length - 1); index >= 0; index--) {
+    list = prepend(array[index], list)
+  }
+
   return list;
 }
 
@@ -99,4 +105,22 @@ function listToArray(list) {
     arrayOfValues.push(list["value"]);
   }
   return arrayOfValues;
+}
+
+function nth(list, num) {
+  var count = 0;
+  while (list["rest"]) {
+    if (count === num) {
+      return list["value"];
+    } else {
+      count++;
+      list = list["rest"];
+    }
+  }
+
+  if (!list["rest"]) {
+    if (count === num) {
+      return list["value"];
+    }
+  }
 }
