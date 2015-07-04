@@ -152,3 +152,10 @@ function deepEqual (obj1, obj2) {
 
   return false;
 }
+
+
+function flatten(arrayOfArrays) {
+  return arrayOfArrays.reduce(function (a,b) {
+    return a.concat(b);
+  });
+}
