@@ -84,11 +84,11 @@ function arrayToList(array) {
   var list = null;
 
   var prepend = function(val, res) {
-    return {value: val, rest: res}
-  }
+    return {value: val, rest: res};
+  };
 
   for (var index = (array.length - 1); index >= 0; index--) {
-    list = prepend(array[index], list)
+    list = prepend(array[index], list);
   }
 
   return list;
@@ -96,31 +96,31 @@ function arrayToList(array) {
 
 function listToArray(list) {
   var arrayOfValues = [];
-  while (list["rest"]) {
-    arrayOfValues.push(list["value"]);
-    list = list["rest"];
+  while (list.rest) {
+    arrayOfValues.push(list.value);
+    list = list.rest;
     listToArray(list);
   }
-  if (!list["rest"]) {
-    arrayOfValues.push(list["value"]);
+  if (!list.rest) {
+    arrayOfValues.push(list.value);
   }
   return arrayOfValues;
 }
 
 function nth(list, num) {
   var count = 0;
-  while (list["rest"]) {
+  while (list.rest) {
     if (count === num) {
-      return list["value"];
+      return list.value;
     } else {
       count++;
-      list = list["rest"];
+      list = list.rest;
     }
   }
 
-  if (!list["rest"]) {
+  if (!list.rest) {
     if (count === num) {
-      return list["value"];
+      return list.value;
     }
   }
 }
@@ -130,7 +130,7 @@ function deepEqual (obj1, obj2) {
     return true;
   }
 
-  if (obj1 == null || obj2 == null) {
+  if (obj1 === null || obj2 === null) {
     return false;
   }
 
@@ -143,7 +143,7 @@ function deepEqual (obj1, obj2) {
     } else {
       for (var keys in obj1) {
         if (deepEqual(obj1[keys], obj2[keys]) === false) {
-          return false
+          return false;
         }
       }
     }
