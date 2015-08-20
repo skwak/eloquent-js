@@ -55,13 +55,13 @@ ancestry.forEach(function(person) {
 
 // "...compute the average age difference between mothers and children (the age of the mother when the child is born)"
 
-function has_known_mother(p) {
+function hasKnownMother(p) {
   if (p.mother !== null) {
     return byName[p.mother];
   }
 }
 
-function age_difference(p) {
+function ageDifference(p) {
     return p.born - byName[p.mother].born;
 }
-console.log(average(ancestry.filter(has_known_mother).map(age_difference)));
+console.log(average(ancestry.filter(hasKnownMother).map(ageDifference)));
