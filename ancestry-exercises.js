@@ -41,4 +41,27 @@ var ANCESTRY_FILE = "[\n  " + [
 ].join(",\n  ") + "\n]";
 
 var ancestry = JSON.parse(ANCESTRY_FILE);
-console.log(ancestry.length);
+
+// haverbeke's average function
+function average(array) {
+  function plus(a, b) { return a + b; }
+  return array.reduce(plus) / array.length;
+}
+
+var byName = {};
+ancestry.forEach(function(person) {
+  byName[person.name] = person;
+});
+
+// "...compute the average age difference between mothers and children (the age of the mother when the child is born)"
+
+function has_known_mother(p) {
+  if (p.mother !== null) {
+    return byName[p.mother];
+  }
+}
+
+function age_difference(p) {
+    return p.born - byName[p.mother].born;
+}
+console.log(average(ancestry.filter(has_known_mother).map(age_difference)));
