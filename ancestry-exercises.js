@@ -62,6 +62,59 @@ function hasKnownMother(p) {
 }
 
 function ageDifference(p) {
-    return p.born - byName[p.mother].born;
+  return p.born - byName[p.mother].born;
 }
+
+// average age difference is 31.22
 console.log(average(ancestry.filter(hasKnownMother).map(ageDifference)));
+
+// "..when we looked up all the people in our data set that lived more than 90 years, only the latest generation in the data came. Let's take a closer look at that phenomenon.
+// Compute and output the average age of the people in the ancestry data set per century. A person is assigned to a century by taking their year of death, dividing it by 100, and rouding it up, as in Math.ceil(person.died / 100).
+// For bonus points, write a function groupBy that abstracts the grouping operation. It should accept as arguments an array and a function that computes the group for an element in the array and returns and object that maps group names to arrays of group numbers.
+
+function age(person) { return person.died - person.born; }
+
+function find16thCentury(person) {
+  if (Math.ceil(person.died / 100) == 17) {
+    return person;
+  }
+}
+
+function find17thCentury(person) {
+  if (Math.ceil(person.died / 100) == 18) {
+    return person;
+  }
+}
+
+function find18thCentury(person) {
+   if (Math.ceil(person.died / 100) == 19) {
+    return person;
+   }
+}
+
+function find19thCentury(person) {
+  if (Math.ceil(person.died / 100) == 20) {
+    return person;
+  }
+}
+
+function find20thCentury(person) {
+  if (Math.ceil(person.died / 100) == 21) {
+    return person;
+  }
+}
+
+// 16th century average age is 51.2
+console.log(average(ancestry.filter(find16thCentury).map(age)));
+
+// 17th century average age is 52.79
+console.log(average(ancestry.filter(find17thCentury).map(age)));
+
+// 18th century average age is 54.83
+console.log(average(ancestry.filter(find18thCentury).map(age))); 
+
+// 19th century average age is 84.67 
+console.log(average(ancestry.filter(find19thCentury).map(age)));
+
+// 20th century average age is 94 
+console.log(average(ancestry.filter(find20thCentury).map(age))); 
