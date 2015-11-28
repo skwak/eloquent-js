@@ -17,3 +17,12 @@ Vector.prototype.plus = function(anotherVector) {
 Vector.prototype.minus = function(anotherVector) {
   return new Vector ((this.x - anotherVector.x), (this.y - anotherVector.y));
 }
+
+Vector.prototype = {
+  get length() {
+    var a = Math.pow((this.x - 0), 2);
+    var b = Math.pow((this.y - 0), 2);
+    var distance = Math.sqrt(a + b);
+    return distance;
+  }
+};
