@@ -33,3 +33,7 @@ function longerThanSixLetters(str) {
 function noLetterE(str) {
   return /\b[^e\W]+\b/.test(str);
 }
+
+
+// quoting style
+// Imagine you have written a story and used single quotation marks throughout
